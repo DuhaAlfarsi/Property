@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateContractPaymentsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('contract_payments', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('contract_id');
+            $table->text('invoice');
+            $table->integer('amount');
+            $table->string('type');
+            $table->integer('reference');
+            $table->string('status');
+            $table->string('verified_by');
+            $table->string('verified_at');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('contract_payments');
+    }
+}
